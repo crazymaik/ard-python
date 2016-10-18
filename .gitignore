@@ -1,0 +1,11 @@
+# source distribution
+/ard.egg-info/
+/dist/
+
+# pytest
+/.cache/
+__pycache__/
+
+# compiled files
+*.pyc
+
