@@ -5,4 +5,3 @@ class Bitmap:
 
     def test(self):
         return 1
-
