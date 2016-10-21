@@ -35,10 +35,16 @@ class Vector3:
     def __sub__(self, other):
         return self.sub(other)
 
-    def multiply(self, value):
+    def mul(self, value):
         return Vector3(x=self.x * value,
                        y=self.y * value,
                        z=self.z * value)
+
+    def div(self, value):
+        reciprocal = 1.0 / value
+        return Vector3(x=self.x * reciprocal,
+                       y=self.y * reciprocal,
+                       z=self.z * reciprocal)
 
     def length_squared(self):
         return self.x*self.x + self.y*self.y + self.z*self.z
@@ -56,7 +62,7 @@ class Vector3:
 
     def normalized(self):
         reciprocal = 1.0 / self.length()
-        return self.multiply(reciprocal)
+        return self.mul(reciprocal)
 
     def __eq__(self, other):
         if not isinstance(other, self.__class__):
