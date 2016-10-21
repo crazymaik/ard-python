@@ -1,6 +1,7 @@
 import sys
 
-from ard.bitmap import Bitmap, Color
+from ard.bitmap import Bitmap
+from ard.color import Color
 
 
 def main():

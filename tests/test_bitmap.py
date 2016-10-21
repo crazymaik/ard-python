@@ -1,6 +1,7 @@
 import context
 from io import BytesIO
-from ard.bitmap import Bitmap, Color
+from ard.bitmap import Bitmap
+from ard.color import Color
 
 
 class TestBimap:

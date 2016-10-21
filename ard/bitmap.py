@@ -3,9 +3,6 @@ import struct
 from collections import namedtuple
 
 
-Color = namedtuple('Color', 'r g b')
-
-
 class Bitmap:
     def __init__(self, width, height, colors):
         self.width = width
