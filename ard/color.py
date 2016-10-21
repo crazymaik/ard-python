@@ -21,6 +21,23 @@ class Color:
     def b(self):
         return self._b
 
+    def add(self, other):
+        return Color(r=self.r + other.r,
+                     g=self.g + other.g,
+                     b=self.b + other.b)
+
+    def __add__(self, other):
+        return self.add(other)
+
+    def mul(self, value):
+        return Color(r=self.r*value,
+                     g=self.g*value,
+                     b=self.b*value)
+
+    def div(self, value):
+        reciprocal = 1.0 / value
+        return self.mul(reciprocal)
+
     def clamp(self):
         def f(d):
             return min(1, max(0, d))
