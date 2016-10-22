@@ -2,16 +2,49 @@ import sys
 
 from ard.bitmap import Bitmap
 from ard.color import Color
+from ard.sphere import Sphere
+from ard.tracer import Tracer
+from ard.vector3 import Vector3
+from ard.view_plane import ViewPlane
+from ard.world import World
 
 
 def main():
-    colors = []
-    for y in range(768):
-        for x in range(1024):
-            colors.append(Color(x % 256 / 255, y % 256 / 255, 0))
-    bitmap = Bitmap(width=1024, height=768, colors=colors)
+    print("Rendering...")
+
+    width = 640
+    height = 480
+
+    world = World(
+        view_plane=ViewPlane(
+            hres=width,
+            vres=height,
+            pixel_size=0.7,
+            gamma=1.0),
+        background_color=Color(r=0, g=0, b=0),
+        tracer=Tracer(),
+        scene_objects=[
+            Sphere(
+                center=Vector3(x=-100, y=0, z=0),
+                radius=70.0,
+                color=Color(r=1, g=0, b=0)),
+            Sphere(
+                center=Vector3(x=00, y=0, z=0),
+                radius=25.0,
+                color=Color(r=0, g=1, b=0)),
+            Sphere(
+                center=Vector3(x=100, y=0, z=0),
+                radius=70.0,
+                color=Color(r=0, g=0, b=1))
+        ]
+    )
+
+    colors = world.render()
+    bitmap = Bitmap(width=width, height=height, colors=colors)
     with open("out.bmp", "wb") as file:
         bitmap.write_to(file)
+
+    print("Done")
 
 if __name__ == "__main__":
     main()
