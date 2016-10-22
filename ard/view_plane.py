@@ -1,12 +1,13 @@
 
 class ViewPlane:
 
-    def __init__(self, hres, vres, pixel_size, gamma):
+    def __init__(self, hres, vres, pixel_size, gamma, sampler):
         self._hres = hres
         self._vres = vres
         self._pixel_size = pixel_size
         self._gamma = gamma
         self._inv_gamma = 1.0 / gamma
+        self._sampler = sampler
 
     @property
     def horizontal_resolution(self):
@@ -22,8 +23,12 @@ class ViewPlane:
 
     @property
     def gamma(self):
-        return self.gamma
+        return self._gamma
 
     @property
     def inv_gamma(self):
-        return self.inv_gamma
+        return self._inv_gamma
+
+    @property
+    def sampler(self):
+        return self._sampler

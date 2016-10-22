@@ -1,7 +1,9 @@
+import random
 import sys
 
 from ard.bitmap import Bitmap
 from ard.color import Color
+from ard.sampler import StandardSampler, JitteredSampler
 from ard.sphere import Sphere
 from ard.tracer import Tracer
 from ard.vector3 import Vector3
@@ -12,15 +14,20 @@ from ard.world import World
 def main():
     print("Rendering...")
 
-    width = 640
-    height = 480
+    width = 160
+    height = 120
 
     world = World(
         view_plane=ViewPlane(
             hres=width,
             vres=height,
-            pixel_size=0.7,
-            gamma=1.0),
+            pixel_size=0.5,
+            gamma=1.0,
+            # sampler=StandardSampler()),
+            sampler=JitteredSampler(
+                samples_per_axis=3,
+                num_sets=1,
+                random=random)),
         background_color=Color(r=0, g=0, b=0),
         tracer=Tracer(),
         scene_objects=[

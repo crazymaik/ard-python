@@ -27,14 +27,18 @@ class World:
         vres = self._view_plane.vertical_resolution
         pixel_size = self._view_plane.pixel_size
         colors = [None] * (hres*vres)
+        num_samples = self._view_plane.sampler.num_samples
 
         for r in range(vres):
             for c in range(hres):
-                x = pixel_size * (c - 0.5 * (hres - 1.0))
-                y = pixel_size * (r - 0.5 * (vres - 1.0))
-                ray = Ray(origin=Vector3(x=x, y=y, z=100),
-                          direction=Vector3(x=0, y=0, z=-1))
-                color = self._tracer.trace_ray(ray, self)
-                colors[r * hres + c] = color
+                color = Color(r=0, g=0, b=0)
+                samples = self._view_plane.sampler.sample_unit_square(0)
+                for i in range(num_samples):
+                    x = pixel_size * (c - 0.5 * hres + samples[i].x)
+                    y = pixel_size * (r - 0.5 * vres + samples[i].y)
+                    ray = Ray(origin=Vector3(x=x, y=y, z=100),
+                              direction=Vector3(x=0, y=0, z=-1))
+                    color += self._tracer.trace_ray(ray, self)
+                colors[r * hres + c] = color.div(num_samples)
 
         return colors
