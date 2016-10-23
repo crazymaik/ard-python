@@ -9,7 +9,7 @@ test:
 
 .PHONY: check
 check:
-	@pep8 ard/* tests/*
+	@-pep8 --config=pep8.ini ard/* tests/*
 
 .PHONY: clean
 clean:
