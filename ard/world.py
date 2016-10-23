@@ -8,25 +8,26 @@ from ard.view_plane import ViewPlane
 
 class World:
 
-    def __init__(self, view_plane, background_color, tracer, scene_objects):
+    def __init__(self, view_plane: ViewPlane, background_color: Color,
+                 tracer: Tracer, scene_objects: List[GeometricObject]) -> None:
         self._view_plane = view_plane
         self._background_color = background_color
         self._tracer = tracer
         self._scene_objects = scene_objects
 
     @property
-    def background_color(self):
+    def background_color(self) -> Color:
         return self._background_color
 
     @property
-    def scene_objects(self):
+    def scene_objects(self) -> List[GeometricObject]:
         return self._scene_objects
 
-    def render(self):
+    def render(self) -> List[Color]:
         hres = self._view_plane.horizontal_resolution
         vres = self._view_plane.vertical_resolution
         pixel_size = self._view_plane.pixel_size
-        colors = [None] * (hres*vres)
+        colors = [None] * (hres*vres)  # type: List[Color]
         num_samples = self._view_plane.sampler.num_samples
 
         for r in range(vres):

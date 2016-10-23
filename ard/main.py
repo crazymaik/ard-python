@@ -11,7 +11,7 @@ from ard.view_plane import ViewPlane
 from ard.world import World
 
 
-def main():
+def main() -> None:
     print("Rendering...")
 
     width = 160

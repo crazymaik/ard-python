@@ -1,22 +1,23 @@
 from ard.vector2 import Vector2
+from typing import Any
 
 
 class Sampler:
 
-    def __init__(self, num_samples, num_sets):
+    def __init__(self, num_samples: int, num_sets: int) -> None:
         self._num_samples = num_samples
         self._num_sets = num_sets
-        self._sets = []
+        self._sets = []  # type: List[List[Vector2]]
 
     @property
-    def num_sets(self):
+    def num_sets(self) -> int:
         return self._num_sets
 
     @property
-    def num_samples(self):
+    def num_samples(self) -> int:
         return self._num_samples
 
-    def sample_unit_square(self, set_index):
+    def sample_unit_square(self, set_index: int) -> List[Vector2]:
         return self._sets[set_index]
 
 
@@ -29,7 +30,7 @@ class StandardSampler(Sampler):
 
 class JitteredSampler(Sampler):
 
-    def __init__(self, samples_per_axis, num_sets, random):
+    def __init__(self, samples_per_axis: int, num_sets: int, random: Any) -> None:
         Sampler.__init__(self,
                          num_samples=samples_per_axis*samples_per_axis,
                          num_sets=num_sets)

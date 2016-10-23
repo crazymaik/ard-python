@@ -1,13 +1,13 @@
 
 class Vector2:
-    def __init__(self, x, y):
+    def __init__(self, x: float, y: float) -> None:
         self._x = x
         self._y = y
 
     @property
-    def x(self):
+    def x(self) -> float:
         return self._x
 
     @property
-    def y(self):
+    def y(self) -> float:
         return self._y

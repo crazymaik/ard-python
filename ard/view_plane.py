@@ -1,7 +1,10 @@
+from ard.sampler import Sampler
+
 
 class ViewPlane:
 
-    def __init__(self, hres, vres, pixel_size, gamma, sampler):
+    def __init__(self, hres: int, vres: int, pixel_size: float,
+                 gamma: float, sampler: Sampler) -> None:
         self._hres = hres
         self._vres = vres
         self._pixel_size = pixel_size
@@ -10,25 +13,25 @@ class ViewPlane:
         self._sampler = sampler
 
     @property
-    def horizontal_resolution(self):
+    def horizontal_resolution(self) -> int:
         return self._hres
 
     @property
-    def vertical_resolution(self):
+    def vertical_resolution(self) -> int:
         return self._vres
 
     @property
-    def pixel_size(self):
+    def pixel_size(self) -> float:
         return self._pixel_size
 
     @property
-    def gamma(self):
+    def gamma(self) -> float:
         return self._gamma
 
     @property
-    def inv_gamma(self):
+    def inv_gamma(self) -> float:
         return self._inv_gamma
 
     @property
-    def sampler(self):
+    def sampler(self) -> Sampler:
         return self._sampler

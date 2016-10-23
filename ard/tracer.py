@@ -1,10 +1,16 @@
+from ard.color import Color
+from ard.geometric_object import GeometricObject, ShadeRecord, HitResult
+from ard.ray import Ray
+from ard.world import World
+from typing import Optional
+
 
 class Tracer:
 
-    def __init__(self):
+    def __init__(self) -> None:
         return
 
-    def trace_ray(self, ray, world):
+    def trace_ray(self, ray: Ray, world: World) -> Color:
         shade_rec = self.hit_objects(ray, world.scene_objects)
 
         if shade_rec is None:
@@ -12,8 +18,8 @@ class Tracer:
         else:
             return shade_rec.color
 
-    def hit_objects(self, ray, objects):
-        min_result = None
+    def hit_objects(self, ray: Ray, objects: List[GeometricObject]) -> Optional[ShadeRecord]:
+        min_result = None  # type: Optional[HitResult]
 
         for object in objects:
             result = object.hit(ray)

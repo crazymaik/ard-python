@@ -1,18 +1,19 @@
 import math
 import struct
 from collections import namedtuple
+from ard.color import Color
+from typing import IO
 
 
 class Bitmap:
-    def __init__(self, width, height, colors):
+    def __init__(self, width: int, height: int, colors: List[Color]) -> None:
         self.width = width
         self.height = height
         self.colors = colors
         self.row_padding = (4 - (width*3 % 4)) % 4
         self.row_size = width*3 + self.row_padding
-        return
 
-    def write_to(self, stream):
+    def write_to(self, stream: IO[bytes]):
         self.write_file_header(stream)
         self.write_info_header(stream)
         self.write_pixels(stream)

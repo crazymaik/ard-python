@@ -3,7 +3,7 @@ from ard.ray import Ray
 from ard.geometric_object import GeometricObject, HitResult, ShadeRecord
 
 
-class Sphere:
+class Sphere(GeometricObject):
     def __init__(self, center, radius, color):
         self._center = center
         self._radius = radius
