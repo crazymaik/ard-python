@@ -10,6 +10,7 @@ test:
 .PHONY: check
 check:
 	@-pep8 --config=pep8.ini ard/* tests/*
+	@-mypy ard
 
 .PHONY: clean
 clean:
